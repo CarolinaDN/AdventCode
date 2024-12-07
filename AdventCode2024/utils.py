@@ -8,3 +8,7 @@ def read_two_column_file(file_name):
             y.append(int(p[1]))
 
     return x, y
+
+def read_row_file(file_name, type):
+    with open(file_name, 'r') as data:
+        return [list(map(type, line.split())) for line in data]
