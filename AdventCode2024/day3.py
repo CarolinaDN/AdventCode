@@ -53,15 +53,18 @@ def day3_part2(concat_memory):
     """
     multipliers = re.findall(r"(mul\(\d+\,\d+\)|don't\(\)|do\(\))", concat_memory)
     valid_multipliers = []
-    valid = 1
+    validator = 1
+
+    # Mapping of instruction values
+    valid_mapping = {
+        "don't()": 0,
+        "do()": 1
+    }
     for mult in multipliers:
-        if mult == "don't()":
-            valid = 0
-        elif mult == "do()":
-            valid = 1
+        if mult in valid_mapping.keys():
+            validator = valid_mapping.get(mult, validator)
         else:
-            if valid:
-                valid_multipliers.append(mult)
+            validator and valid_multipliers.append(mult)
 
     total_multiplications = calculate_total(valid_multipliers)
     print("Day 3 - Part 2: result of the multiplications:", total_multiplications)
