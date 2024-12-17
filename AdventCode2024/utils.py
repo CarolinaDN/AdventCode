@@ -12,3 +12,7 @@ def read_two_column_file(file_name):
 def read_row_file(file_name, type):
     with open(file_name, 'r') as data:
         return [list(map(type, line.split())) for line in data]
+
+def read_str_file(file_name):
+    with open(file_name, 'r') as data:
+        return [line.split()[0] for line in data]
